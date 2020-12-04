@@ -1,4 +1,4 @@
-package ingest;
+package com.zbmed.ingest;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;

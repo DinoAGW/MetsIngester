@@ -1,11 +1,11 @@
-package ingest;
+package com.zbmed.ingest;
 
-import gov.loc.mets.DivType;
+//import gov.loc.mets.DivType;
 import gov.loc.mets.FileType;
 import gov.loc.mets.MetsDocument;
-import gov.loc.mets.MetsDocument.Mets;
+//import gov.loc.mets.MetsDocument.Mets;
 import gov.loc.mets.MetsType.FileSec.FileGrp;
-import gov.loc.mets.StructMapType;
+//import gov.loc.mets.StructMapType;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,7 +49,10 @@ import com.exlibris.dps.sdk.deposit.IEParser;
 import com.exlibris.dps.sdk.deposit.IEParserFactory;
 import com.exlibris.dps.sdk.pds.HeaderHandlerResolver;
 
+
 public class Test {
+	static final String fs = Utilities.fs;
+	
 	static final String userName = "SubApp ZB MED";
 	static final String institution = "ZBM";
 	static String password = "";
@@ -57,10 +60,10 @@ public class Test {
 	static final String depositSetId = "1";
 
 	//should be placed under where submission format of MF is configured
-	static final String folder_on_working_machine = System.getProperty("user.home").concat("/workspace");
-	static final String subDirectoryName = folder_on_working_machine.concat("/DepositExample3");
-	static final String filesRootFolder = subDirectoryName + "/content/streams/";
-	static final String IEfullFileName = subDirectoryName + "/content/ie1.xml";
+	static final String folder_on_working_machine = System.getProperty("user.home").concat(fs).concat("workspace");
+	static final String subDirectoryName = folder_on_working_machine.concat(fs).concat("DepositExample4");
+	static final String filesRootFolder = subDirectoryName.concat(fs).concat("content").concat(fs).concat("streams").concat(fs);
+	static final String IEfullFileName = subDirectoryName.concat(fs).concat("content").concat(fs).concat("ie1.xml");
 
 	static final String DEPOSIT_WSDL_URL = "http://rosetta.develop.lza.tib.eu/dpsws/deposit/DepositWebServices?wsdl";
 	static final String PRODUCER_WSDL_URL = "http://rosetta.develop.lza.tib.eu/dpsws/backoffice/ProducerWebServices?wsdl";
@@ -175,7 +178,6 @@ public class Test {
 
 			validateXML(ieXML.getAbsolutePath(), xmlRosettaMetsContent, ROSETTA_METS_XSD);
 
-//			void connect
 			
 			System.out.println("vorzeitiges Ende");
 			if(true) return;
