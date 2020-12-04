@@ -34,6 +34,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/commons-net-3.7.2/commons-net-3.7.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
