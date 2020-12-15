@@ -1,25 +1,21 @@
 package com.zbmed.ingest;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.DocumentBuilder;
-
-import org.dom4j.QName;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import com.exlibris.core.sdk.formatting.DublinCore;
-
-import org.w3c.dom.Node;
-import org.w3c.dom.Element;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import com.exlibris.core.sdk.formatting.DublinCore;
 
 public class MetadataExtractor {
 	static final String fs = System.getProperty("file.separator");
