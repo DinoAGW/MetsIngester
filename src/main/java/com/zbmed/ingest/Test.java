@@ -83,11 +83,11 @@ public class Test {
 	 */
 
 	public static void main(String[] args) throws IOException {
-		System.out.print(new String("Passwort des Users ").concat(userName).concat(":"));
-		//Passwort abfragen
-		Scanner sc = new Scanner(System.in);
-		password = sc.next();
-		sc.close();
+//		System.out.print(new String("Passwort des Users ").concat(userName).concat(":"));
+//		//Passwort abfragen
+//		Scanner sc = new Scanner(System.in);
+//		password = sc.next();
+//		sc.close();
 		
 		String HT = "HT020488506";
 		String ID = "dgnc2020";
