@@ -49,6 +49,7 @@ public class IECreationTest {
 			ie.setIEDublinCore(dc);
 
 			// add fileGrp
+			@SuppressWarnings("deprecation")
 			FileGrp fGrp = ie.addNewFileGrp(Enum.UsageType.VIEW, Enum.PreservationType.PRESERVATION_MASTER);
 
 			// add dnx - A new DNX is constructed and added on the file group level

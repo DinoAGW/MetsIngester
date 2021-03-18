@@ -39,6 +39,7 @@ public class DepositActivityWSTest {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		@SuppressWarnings("unused")
 		String result;
 
 		/* DPS-4624
