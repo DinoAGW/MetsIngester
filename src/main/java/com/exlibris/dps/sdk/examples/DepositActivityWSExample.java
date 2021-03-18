@@ -25,6 +25,7 @@ public class DepositActivityWSExample {
 	public static void main(String[] args) {
 
 		/* get pds handle */
+		@SuppressWarnings("unused")
 		String pdsHandle = null;
 
 		String userName = "admin1";
@@ -54,6 +55,7 @@ public class DepositActivityWSExample {
 		result = services.getDepositActivityByUpdateDate(null, "Inprocess", "10000", "763", "20/01/2009", "20/02/2010", "11", "14");
 		System.out.println("example xml from xml - by update date:\n"+result+"\n");
 
+		@SuppressWarnings("unused")
 		DepositActivityListDocument doc;
 		try {
 			/* example of working on xml using xml bean */

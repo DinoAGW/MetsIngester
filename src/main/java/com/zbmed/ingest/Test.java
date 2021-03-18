@@ -83,11 +83,11 @@ public class Test {
 	 */
 
 	public static void main(String[] args) throws IOException {
-		System.out.print(new String("Passwort des Users ").concat(userName).concat(":"));
-		//Passwort abfragen
-		Scanner sc = new Scanner(System.in);
-		password = sc.next();
-		sc.close();
+//		System.out.print(new String("Passwort des Users ").concat(userName).concat(":"));
+//		//Passwort abfragen
+//		Scanner sc = new Scanner(System.in);
+//		password = sc.next();
+//		sc.close();
 		
 		String HT = "HT020488506";
 		String ID = "dgnc2020";
@@ -113,6 +113,7 @@ public class Test {
 			List<FileGrp> fGrpList = new ArrayList<FileGrp>();
 
 			// add fileGrp
+			@SuppressWarnings("deprecation")
 			FileGrp fGrp = ie.addNewFileGrp(Enum.UsageType.VIEW, Enum.PreservationType.PRESERVATION_MASTER);
 
 			// add dnx - A new DNX is constructed and added on the file group level
