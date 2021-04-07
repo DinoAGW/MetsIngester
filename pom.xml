@@ -49,8 +49,8 @@
 			<version>2.6</version>
 		</dependency>
 		<dependency>
-			<groupId>com.itextpdf</groupId>
-			<artifactId>layout</artifactId>
+			<groupId>com.exlibris</groupId>
+			<artifactId>sdk</artifactId>
 			<version>6.3.0</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/lib/dps-sdk-6.3.0.jar</systemPath>

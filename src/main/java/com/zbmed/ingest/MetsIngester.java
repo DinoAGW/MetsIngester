@@ -1,24 +1,8 @@
 package com.zbmed.ingest;
 
 import java.io.File;
-import java.io.InputStream;
-import java.io.StringReader;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.xml.namespace.QName;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
-
-import org.xml.sax.InputSource;
-
-import com.exlibris.core.infra.common.util.IOUtil;
-import com.exlibris.core.sdk.utils.FileUtil;
 import com.exlibris.digitool.deposit.service.xmlbeans.DepositDataDocument;
 import com.exlibris.digitool.deposit.service.xmlbeans.DepositResultDocument;
 import com.exlibris.digitool.deposit.service.xmlbeans.DepositDataDocument.DepositData;
@@ -31,7 +15,6 @@ import com.exlibris.dps.SipWebServices_Service;
 import com.exlibris.dps.sdk.pds.HeaderHandlerResolver;
 
 public class MetsIngester {
-	private static final boolean validateXML = true;
 	
 	static final String fs = System.getProperty("file.separator");
 	public static final String sipPath = System.getProperty("user.home").concat(fs).concat("workspace").concat(fs)
@@ -40,14 +23,8 @@ public class MetsIngester {
 	private static final String userName = "SubApp ZB MED";
 	private static final String institution = "ZBM";
 	private static String password = "";
-	private static final String depositSetId = "1";//TODO was könnte das sein?
-	
-	private static final String ROSETTA_METS_SCHEMA = "http://www.exlibrisgroup.com/xsd/dps/rosettaMets";
-	private static final String METS_SCHEMA = "http://www.loc.gov/METS/";
-	private static final String XML_SCHEMA = "http://www.w3.org/2001/XMLSchema-instance";
-	private static final String XML_SCHEMA_REPLACEMENT = "http://www.exlibrisgroup.com/XMLSchema-instance";
-//	private static final String METS_XSD = "mets.xsd";
-	private static final String ROSETTA_METS_XSD = "mets_rosetta.xsd";
+	private static final String depositSetId = "2049290";//TODO was könnte das sein? vielleicht Producer "ZB MED - German Medical Science" mit der ID 2049290?
+	//	private static final String METS_XSD = "mets.xsd";
 	
 	public static void main(String[] args) throws Exception {
 		System.out.println("Starte ingester...");
@@ -93,25 +70,7 @@ public class MetsIngester {
 		final String PRODUCER_WSDL_URL = rosettaURL.concat("/dpsws/backoffice/ProducerWebServices?wsdl");
 		String SIP_STATUS_WSDL_URL = rosettaURL.concat("/dpsws/repository/SipWebServices?wsdl");
 		
-		if (validateXML) {			
-			final String IEfullFileName = subDirectoryName.concat(fs).concat("content").concat(fs).concat("ie1.xml");
-	
-			//validate against mets_rosetta.xsd
-			File ieXML = new File(IEfullFileName);
-			System.out.println(ieXML.exists());
-			String xmlMetsContent = FileUtil.getFileContent(IEfullFileName);
-			
-			if (xmlMetsContent == null) {
-				System.err.println("IE XML ist leer: '".concat(IEfullFileName).concat("'"));
-				throw new Exception();
-			}
-	
-			//Need to replace manually the namespace with Rosetta Mets schema in order to pass validation against mets_rosetta.xsd
-			String xmlRosettaMetsContent = xmlMetsContent.replaceAll(XML_SCHEMA, XML_SCHEMA_REPLACEMENT);
-			xmlRosettaMetsContent = xmlMetsContent.replaceAll(METS_SCHEMA, ROSETTA_METS_SCHEMA);
-	
-			validateXML(ieXML.getAbsolutePath(), xmlRosettaMetsContent, ROSETTA_METS_XSD);
-		}
+		System.out.println("ingeste: '".concat(subDirectoryName).concat("' in '").concat("rosettaURL").concat("' unter '").concat(materialflowId).concat("'."));
 
 		// 3. Place the SIP directory in a folder that can be accessed by the Rosetta application (using FTP is a valid approach)
 		URL ProdWsdlUrl = new URL(PRODUCER_WSDL_URL);
@@ -153,36 +112,5 @@ public class MetsIngester {
 				System.out.println("Submitted Deposit is in Module: " + status.getModule());
 			}
 		}
-	}
-
-	private static void validateXML(String fileFullName, String xml, String xsdName) throws Exception {
-		try {
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			factory.setNamespaceAware(true);
-			factory.setSchema(getSchema(xsdName));
-			DocumentBuilder builder = factory.newDocumentBuilder();
-			builder.parse(new InputSource(new StringReader(xml)));
-		} catch (Exception e) {
-			System.out.println("XML '" + fileFullName + "' doesn't pass validation by :" + xsdName
-					+ " with the following validation error: " + e.getMessage());
-		}
-	}
-
-	private static Schema getSchema(String xsdName) throws Exception {
-		Map<String, Schema> schemas = new HashMap<String, Schema>();
-		if (schemas.get(xsdName) == null) {
-			InputStream inputStream = null;
-			try {
-				File xsd = new File("src/xsd/mets_rosetta.xsd");
-				Source xsdFile = new StreamSource(xsd);
-				SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/XML/XMLSchema/v1.1");
-				schemas.put(xsdName, schemaFactory.newSchema(xsdFile));
-			} catch (Exception e) {
-				System.out.println("Failed to create Schema with following error: " + e.getMessage());
-			} finally {
-				IOUtil.closeQuietly(inputStream);
-			}
-		}
-		return schemas.get(xsdName);
 	}
 }
