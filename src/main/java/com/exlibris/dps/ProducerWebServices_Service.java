@@ -30,9 +30,9 @@ public class ProducerWebServices_Service
         try {
             URL baseUrl;
             baseUrl = com.exlibris.dps.ProducerWebServices_Service.class.getResource(".");
-            url = new URL(baseUrl, "http://localhost:1801/dpsws/backoffice/ProducerWebServices?wsdl");
+            url = new URL(baseUrl, "http://rosetta.develop.lza.tib.eu/dpsws/deposit/ProducerWebServices?wsdl");
         } catch (MalformedURLException e) {
-            logger.warning("Failed to create URL for the wsdl Location: 'http://localhost:1801/dpsws/backoffice/ProducerWebServices?wsdl', retrying as a local file");
+            logger.warning("Failed to create URL for the wsdl Location: 'http://rosetta.develop.lza.tib.eu/dpsws/deposit/ProducerWebServices?wsdl', retrying as a local file");
             logger.warning(e.getMessage());
         }
         PRODUCERWEBSERVICES_WSDL_LOCATION = url;
