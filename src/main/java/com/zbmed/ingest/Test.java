@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 import javax.xml.namespace.QName;
 import javax.xml.parsers.DocumentBuilder;
@@ -51,7 +51,7 @@ import com.exlibris.dps.sdk.pds.HeaderHandlerResolver;
 
 
 public class Test {
-	static final String fs = Utilities.fs;
+	static final String fs = System.getProperty("file.separator");
 	
 	static final String userName = "SubApp ZB MED";
 	static final String institution = "ZBM";
@@ -65,9 +65,9 @@ public class Test {
 	static final String filesRootFolder = subDirectoryName.concat(fs).concat("content").concat(fs).concat("streams").concat(fs);
 	static final String IEfullFileName = subDirectoryName.concat(fs).concat("content").concat(fs).concat("ie1.xml");
 
-	static final String DEPOSIT_WSDL_URL = "http://rosetta.develop.lza.tib.eu/dpsws/deposit/DepositWebServices?wsdl";
-	static final String PRODUCER_WSDL_URL = "http://rosetta.develop.lza.tib.eu/dpsws/backoffice/ProducerWebServices?wsdl";
-	static final String SIP_STATUS_WSDL_URL = "http://rosetta.develop.lza.tib.eu/dpsws/repository/SipWebServices?wsdl";
+	static final String DEPOSIT_WSDL_URL = "https://rosetta.develop.lza.tib.eu/dpsws/deposit/DepositWebServices?wsdl";
+	static final String PRODUCER_WSDL_URL = "https://rosetta.develop.lza.tib.eu/dpsws/backoffice/ProducerWebServices?wsdl";
+	static final String SIP_STATUS_WSDL_URL = "https://rosetta.develop.lza.tib.eu/dpsws/repository/SipWebServices?wsdl";
 
 	public static final String ROSETTA_METS_SCHEMA = "http://www.exlibrisgroup.com/xsd/dps/rosettaMets";
 	public static final String METS_SCHEMA = "http://www.loc.gov/METS/";
@@ -181,7 +181,6 @@ public class Test {
 
 			
 			System.out.println("vorzeitiges Ende");
-			if(true) return;
 
 			// 3. Place the SIP directory in a folder that can be accessed by the Rosetta application (using FTP is a valid approach)
 			ProducerWebServices producerWebServices = new ProducerWebServices_Service(new URL(PRODUCER_WSDL_URL),

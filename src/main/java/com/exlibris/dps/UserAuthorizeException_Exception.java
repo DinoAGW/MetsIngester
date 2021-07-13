@@ -10,6 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.1
  *
  */
+@SuppressWarnings("serial")
 @WebFault(name = "UserAuthorizeException", targetNamespace = "http://dps.exlibris.com/")
 public class UserAuthorizeException_Exception
     extends java.lang.Exception

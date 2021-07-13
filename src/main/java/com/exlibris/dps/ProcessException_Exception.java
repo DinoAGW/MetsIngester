@@ -10,6 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.1
  *
  */
+@SuppressWarnings("serial")
 @WebFault(name = "ProcessException", targetNamespace = "http://dps.exlibris.com/")
 public class ProcessException_Exception
     extends java.lang.Exception
