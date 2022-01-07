@@ -7,9 +7,14 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Properties;
 
-public class Properties_Manager {
+public class PropertiesManager {
 	String propertyDateiPfad = null;
 	Properties properties;
+	
+	public PropertiesManager(String propertyDateiPfad) {
+		this.propertyDateiPfad = propertyDateiPfad;
+		this.properties = new Properties();
+	}
 
 	public String getPropertyDateiPfad() {
 		return propertyDateiPfad;
@@ -17,11 +22,6 @@ public class Properties_Manager {
 
 	public Properties getProperties() {
 		return properties;
-	}
-
-	public Properties_Manager(String propertyDateiPfad) {
-		this.propertyDateiPfad = propertyDateiPfad;
-		this.properties = new Properties();
 	}
 
 	public void saveStringToProperty(String prop, String value) throws IOException {

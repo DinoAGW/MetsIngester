@@ -101,7 +101,6 @@ public class FullFlowExample {
 			List<FileGrp> fGrpList = new ArrayList<FileGrp>();
 
 			// add fileGrp
-			@SuppressWarnings("deprecation")
 			FileGrp fGrp = ie.addNewFileGrp(Enum.UsageType.VIEW, Enum.PreservationType.PRESERVATION_MASTER);
 
 			// add dnx - A new DNX is constructed and added on the file group level
@@ -209,7 +208,7 @@ public class FullFlowExample {
 				if(depositResult.getIsError()){
 					System.out.println("Submit Deposit Failed");
 				}else{
-					SipStatusInfo status = new SipWebServices_Service(new URL(SIP_STATUS_WSDL_URL),new QName("http://dps.exlibris.com/", "SipWebServices")).getSipWebServicesPort().getSIPStatusInfo(String.valueOf(depositResult.getSipId()));
+					SipStatusInfo status = new SipWebServices_Service(new URL(SIP_STATUS_WSDL_URL),new QName("http://dps.exlibris.com/", "SipWebServices")).getSipWebServicesPort().getSIPStatusInfo(String.valueOf(depositResult.getSipId()), true);
 					System.out.println("Submitted Deposit Status: " + status.getStatus());
 					System.out.println("Submitted Deposit Stage: " + status.getStage());
 					System.out.println("Submitted Deposit is in Module: " + status.getModule());

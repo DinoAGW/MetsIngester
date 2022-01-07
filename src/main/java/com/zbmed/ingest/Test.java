@@ -215,7 +215,7 @@ public class Test {
 				} else {
 					SipStatusInfo status = new SipWebServices_Service(new URL(SIP_STATUS_WSDL_URL),
 							new QName("http://dps.exlibris.com/", "SipWebServices")).getSipWebServicesPort()
-									.getSIPStatusInfo(String.valueOf(depositResult.getSipId()));
+									.getSIPStatusInfo(String.valueOf(depositResult.getSipId()), false);
 					System.out.println("Submitted Deposit Status: " + status.getStatus());
 					System.out.println("Submitted Deposit Stage: " + status.getStage());
 					System.out.println("Submitted Deposit is in Module: " + status.getModule());

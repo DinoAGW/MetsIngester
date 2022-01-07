@@ -25,7 +25,7 @@ public class DepositWorkflowExample {
 
 	//should be placed under where submissionformat of MF is configured
 	static final String subDirectoryName = "/folder_on_unix_machine/deposits/dep1";
-	
+
 	static final String DEPOSIT_WSDL_URL = "http://localhost:1801/dpsws/deposit/DepositWebServices?wsdl";
 	static final String PRODUCER_WSDL_URL = "http://localhost:1801/dpsws/backoffice/ProducerWebServices?wsdl";
 	static final String SIP_STATUS_WSDL_URL = "http://localhost:1801/dpsws/repository/SipWebServices?wsdl";
@@ -71,7 +71,7 @@ public class DepositWorkflowExample {
 			if(depositResult.getIsError()){
 				System.out.println("Submit Deposit Failed");
 			}else{
-				SipStatusInfo status = new SipWebServices_Service(new URL(SIP_STATUS_WSDL_URL),new QName("http://dps.exlibris.com/", "SipWebServices")).getSipWebServicesPort().getSIPStatusInfo(String.valueOf(depositResult.getSipId()));
+				SipStatusInfo status = new SipWebServices_Service(new URL(SIP_STATUS_WSDL_URL),new QName("http://dps.exlibris.com/", "SipWebServices")).getSipWebServicesPort().getSIPStatusInfo(String.valueOf(depositResult.getSipId()), false);
 				System.out.println("Submitted Deposit Status: " + status.getStatus());
 				System.out.println("Submitted Deposit Stage: " + status.getStage());
 				System.out.println("Submitted Deposit is in Module: " + status.getModule());

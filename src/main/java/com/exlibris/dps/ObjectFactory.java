@@ -24,103 +24,24 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _SubmitDepositActivityResponse_QNAME = new QName("http://dps.exlibris.com/", "submitDepositActivityResponse");
+    private final static QName _GetDepositActivityBySubmitDateByMaterialFlow_QNAME = new QName("http://dps.exlibris.com/", "getDepositActivityBySubmitDateByMaterialFlow");
+    private final static QName _GetDepositActivityByUpdateDate_QNAME = new QName("http://dps.exlibris.com/", "getDepositActivityByUpdateDate");
+    private final static QName _GetDepositActivityByUpdateDateResponse_QNAME = new QName("http://dps.exlibris.com/", "getDepositActivityByUpdateDateResponse");
     private final static QName _GetHeartBit_QNAME = new QName("http://dps.exlibris.com/", "getHeartBit");
-    private final static QName _UpdateSetMembers_QNAME = new QName("http://dps.exlibris.com/", "updateSetMembers");
-    private final static QName _UserAuthorizeException_QNAME = new QName("http://dps.exlibris.com/", "UserAuthorizeException");
-    private final static QName _RunProcessResponse_QNAME = new QName("http://dps.exlibris.com/", "runProcessResponse");
-    private final static QName _GetProcessExecutionStatusResponse_QNAME = new QName("http://dps.exlibris.com/", "getProcessExecutionStatusResponse");
-    private final static QName _SetNotValidException_QNAME = new QName("http://dps.exlibris.com/", "SetNotValidException");
-    private final static QName _ProcessException_QNAME = new QName("http://dps.exlibris.com/", "ProcessException");
+    private final static QName _GetDepositActivityBySubmitDateByMaterialFlowResponse_QNAME = new QName("http://dps.exlibris.com/", "getDepositActivityBySubmitDateByMaterialFlowResponse");
+    private final static QName _GetDepositActivityBySubmitDate_QNAME = new QName("http://dps.exlibris.com/", "getDepositActivityBySubmitDate");
     private final static QName _GetHeartBitResponse_QNAME = new QName("http://dps.exlibris.com/", "getHeartBitResponse");
-    private final static QName _UpdateSetMembersResponse_QNAME = new QName("http://dps.exlibris.com/", "updateSetMembersResponse");
-    private final static QName _GetProcessExecutionStatus_QNAME = new QName("http://dps.exlibris.com/", "getProcessExecutionStatus");
-    private final static QName _RunProcess_QNAME = new QName("http://dps.exlibris.com/", "runProcess");
+    private final static QName _GetDepositActivityBySubmitDateResponse_QNAME = new QName("http://dps.exlibris.com/", "getDepositActivityBySubmitDateResponse");
+    private final static QName _GetDepositActivityByUpdateDateByMaterialFlowResponse_QNAME = new QName("http://dps.exlibris.com/", "getDepositActivityByUpdateDateByMaterialFlowResponse");
+    private final static QName _SubmitDepositActivity_QNAME = new QName("http://dps.exlibris.com/", "submitDepositActivity");
+    private final static QName _GetDepositActivityByUpdateDateByMaterialFlow_QNAME = new QName("http://dps.exlibris.com/", "getDepositActivityByUpdateDateByMaterialFlow");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.exlibris.dps
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link RunProcessResponse }
-     * 
-     */
-    public RunProcessResponse createRunProcessResponse() {
-        return new RunProcessResponse();
-    }
-
-    /**
-     * Create an instance of {@link SetMembersInfo }
-     * 
-     */
-    public SetMembersInfo createSetMembersInfo() {
-        return new SetMembersInfo();
-    }
-
-    /**
-     * Create an instance of {@link SetNotValidException }
-     * 
-     */
-    public SetNotValidException createSetNotValidException() {
-        return new SetNotValidException();
-    }
-
-    /**
-     * Create an instance of {@link ProcessException }
-     * 
-     */
-    public ProcessException createProcessException() {
-        return new ProcessException();
-    }
-
-    /**
-     * Create an instance of {@link RunProcess }
-     * 
-     */
-    public RunProcess createRunProcess() {
-        return new RunProcess();
-    }
-
-    /**
-     * Create an instance of {@link GetProcessExecutionStatusResponse }
-     * 
-     */
-    public GetProcessExecutionStatusResponse createGetProcessExecutionStatusResponse() {
-        return new GetProcessExecutionStatusResponse();
-    }
-
-    /**
-     * Create an instance of {@link UpdateSetMembers }
-     * 
-     */
-    public UpdateSetMembers createUpdateSetMembers() {
-        return new UpdateSetMembers();
-    }
-
-    /**
-     * Create an instance of {@link GetHeartBitResponse }
-     * 
-     */
-    public GetHeartBitResponse createGetHeartBitResponse() {
-        return new GetHeartBitResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetProcessExecutionStatus }
-     * 
-     */
-    public GetProcessExecutionStatus createGetProcessExecutionStatus() {
-        return new GetProcessExecutionStatus();
-    }
-
-    /**
-     * Create an instance of {@link ProcessExecutionStatusInfo }
-     * 
-     */
-    public ProcessExecutionStatusInfo createProcessExecutionStatusInfo() {
-        return new ProcessExecutionStatusInfo();
     }
 
     /**
@@ -132,27 +53,127 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link UpdateSetMembersResponse }
+     * Create an instance of {@link GetDepositActivityByUpdateDateResponse }
      * 
      */
-    public UpdateSetMembersResponse createUpdateSetMembersResponse() {
-        return new UpdateSetMembersResponse();
+    public GetDepositActivityByUpdateDateResponse createGetDepositActivityByUpdateDateResponse() {
+        return new GetDepositActivityByUpdateDateResponse();
     }
 
     /**
-     * Create an instance of {@link PaExecutionError }
+     * Create an instance of {@link GetDepositActivityBySubmitDateByMaterialFlow }
      * 
      */
-    public PaExecutionError createPaExecutionError() {
-        return new PaExecutionError();
+    public GetDepositActivityBySubmitDateByMaterialFlow createGetDepositActivityBySubmitDateByMaterialFlow() {
+        return new GetDepositActivityBySubmitDateByMaterialFlow();
     }
 
     /**
-     * Create an instance of {@link UserAuthorizeException }
+     * Create an instance of {@link GetDepositActivityByUpdateDate }
      * 
      */
-    public UserAuthorizeException createUserAuthorizeException() {
-        return new UserAuthorizeException();
+    public GetDepositActivityByUpdateDate createGetDepositActivityByUpdateDate() {
+        return new GetDepositActivityByUpdateDate();
+    }
+
+    /**
+     * Create an instance of {@link SubmitDepositActivityResponse }
+     * 
+     */
+    public SubmitDepositActivityResponse createSubmitDepositActivityResponse() {
+        return new SubmitDepositActivityResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetDepositActivityByUpdateDateByMaterialFlow }
+     * 
+     */
+    public GetDepositActivityByUpdateDateByMaterialFlow createGetDepositActivityByUpdateDateByMaterialFlow() {
+        return new GetDepositActivityByUpdateDateByMaterialFlow();
+    }
+
+    /**
+     * Create an instance of {@link SubmitDepositActivity }
+     * 
+     */
+    public SubmitDepositActivity createSubmitDepositActivity() {
+        return new SubmitDepositActivity();
+    }
+
+    /**
+     * Create an instance of {@link GetHeartBitResponse }
+     * 
+     */
+    public GetHeartBitResponse createGetHeartBitResponse() {
+        return new GetHeartBitResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetDepositActivityBySubmitDateResponse }
+     * 
+     */
+    public GetDepositActivityBySubmitDateResponse createGetDepositActivityBySubmitDateResponse() {
+        return new GetDepositActivityBySubmitDateResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetDepositActivityByUpdateDateByMaterialFlowResponse }
+     * 
+     */
+    public GetDepositActivityByUpdateDateByMaterialFlowResponse createGetDepositActivityByUpdateDateByMaterialFlowResponse() {
+        return new GetDepositActivityByUpdateDateByMaterialFlowResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetDepositActivityBySubmitDateByMaterialFlowResponse }
+     * 
+     */
+    public GetDepositActivityBySubmitDateByMaterialFlowResponse createGetDepositActivityBySubmitDateByMaterialFlowResponse() {
+        return new GetDepositActivityBySubmitDateByMaterialFlowResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetDepositActivityBySubmitDate }
+     * 
+     */
+    public GetDepositActivityBySubmitDate createGetDepositActivityBySubmitDate() {
+        return new GetDepositActivityBySubmitDate();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SubmitDepositActivityResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://dps.exlibris.com/", name = "submitDepositActivityResponse")
+    public JAXBElement<SubmitDepositActivityResponse> createSubmitDepositActivityResponse(SubmitDepositActivityResponse value) {
+        return new JAXBElement<SubmitDepositActivityResponse>(_SubmitDepositActivityResponse_QNAME, SubmitDepositActivityResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetDepositActivityBySubmitDateByMaterialFlow }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://dps.exlibris.com/", name = "getDepositActivityBySubmitDateByMaterialFlow")
+    public JAXBElement<GetDepositActivityBySubmitDateByMaterialFlow> createGetDepositActivityBySubmitDateByMaterialFlow(GetDepositActivityBySubmitDateByMaterialFlow value) {
+        return new JAXBElement<GetDepositActivityBySubmitDateByMaterialFlow>(_GetDepositActivityBySubmitDateByMaterialFlow_QNAME, GetDepositActivityBySubmitDateByMaterialFlow.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetDepositActivityByUpdateDate }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://dps.exlibris.com/", name = "getDepositActivityByUpdateDate")
+    public JAXBElement<GetDepositActivityByUpdateDate> createGetDepositActivityByUpdateDate(GetDepositActivityByUpdateDate value) {
+        return new JAXBElement<GetDepositActivityByUpdateDate>(_GetDepositActivityByUpdateDate_QNAME, GetDepositActivityByUpdateDate.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetDepositActivityByUpdateDateResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://dps.exlibris.com/", name = "getDepositActivityByUpdateDateResponse")
+    public JAXBElement<GetDepositActivityByUpdateDateResponse> createGetDepositActivityByUpdateDateResponse(GetDepositActivityByUpdateDateResponse value) {
+        return new JAXBElement<GetDepositActivityByUpdateDateResponse>(_GetDepositActivityByUpdateDateResponse_QNAME, GetDepositActivityByUpdateDateResponse.class, null, value);
     }
 
     /**
@@ -165,57 +186,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateSetMembers }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetDepositActivityBySubmitDateByMaterialFlowResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://dps.exlibris.com/", name = "updateSetMembers")
-    public JAXBElement<UpdateSetMembers> createUpdateSetMembers(UpdateSetMembers value) {
-        return new JAXBElement<UpdateSetMembers>(_UpdateSetMembers_QNAME, UpdateSetMembers.class, null, value);
+    @XmlElementDecl(namespace = "http://dps.exlibris.com/", name = "getDepositActivityBySubmitDateByMaterialFlowResponse")
+    public JAXBElement<GetDepositActivityBySubmitDateByMaterialFlowResponse> createGetDepositActivityBySubmitDateByMaterialFlowResponse(GetDepositActivityBySubmitDateByMaterialFlowResponse value) {
+        return new JAXBElement<GetDepositActivityBySubmitDateByMaterialFlowResponse>(_GetDepositActivityBySubmitDateByMaterialFlowResponse_QNAME, GetDepositActivityBySubmitDateByMaterialFlowResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UserAuthorizeException }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetDepositActivityBySubmitDate }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://dps.exlibris.com/", name = "UserAuthorizeException")
-    public JAXBElement<UserAuthorizeException> createUserAuthorizeException(UserAuthorizeException value) {
-        return new JAXBElement<UserAuthorizeException>(_UserAuthorizeException_QNAME, UserAuthorizeException.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RunProcessResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://dps.exlibris.com/", name = "runProcessResponse")
-    public JAXBElement<RunProcessResponse> createRunProcessResponse(RunProcessResponse value) {
-        return new JAXBElement<RunProcessResponse>(_RunProcessResponse_QNAME, RunProcessResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetProcessExecutionStatusResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://dps.exlibris.com/", name = "getProcessExecutionStatusResponse")
-    public JAXBElement<GetProcessExecutionStatusResponse> createGetProcessExecutionStatusResponse(GetProcessExecutionStatusResponse value) {
-        return new JAXBElement<GetProcessExecutionStatusResponse>(_GetProcessExecutionStatusResponse_QNAME, GetProcessExecutionStatusResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SetNotValidException }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://dps.exlibris.com/", name = "SetNotValidException")
-    public JAXBElement<SetNotValidException> createSetNotValidException(SetNotValidException value) {
-        return new JAXBElement<SetNotValidException>(_SetNotValidException_QNAME, SetNotValidException.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ProcessException }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://dps.exlibris.com/", name = "ProcessException")
-    public JAXBElement<ProcessException> createProcessException(ProcessException value) {
-        return new JAXBElement<ProcessException>(_ProcessException_QNAME, ProcessException.class, null, value);
+    @XmlElementDecl(namespace = "http://dps.exlibris.com/", name = "getDepositActivityBySubmitDate")
+    public JAXBElement<GetDepositActivityBySubmitDate> createGetDepositActivityBySubmitDate(GetDepositActivityBySubmitDate value) {
+        return new JAXBElement<GetDepositActivityBySubmitDate>(_GetDepositActivityBySubmitDate_QNAME, GetDepositActivityBySubmitDate.class, null, value);
     }
 
     /**
@@ -228,30 +213,39 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateSetMembersResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetDepositActivityBySubmitDateResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://dps.exlibris.com/", name = "updateSetMembersResponse")
-    public JAXBElement<UpdateSetMembersResponse> createUpdateSetMembersResponse(UpdateSetMembersResponse value) {
-        return new JAXBElement<UpdateSetMembersResponse>(_UpdateSetMembersResponse_QNAME, UpdateSetMembersResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://dps.exlibris.com/", name = "getDepositActivityBySubmitDateResponse")
+    public JAXBElement<GetDepositActivityBySubmitDateResponse> createGetDepositActivityBySubmitDateResponse(GetDepositActivityBySubmitDateResponse value) {
+        return new JAXBElement<GetDepositActivityBySubmitDateResponse>(_GetDepositActivityBySubmitDateResponse_QNAME, GetDepositActivityBySubmitDateResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetProcessExecutionStatus }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetDepositActivityByUpdateDateByMaterialFlowResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://dps.exlibris.com/", name = "getProcessExecutionStatus")
-    public JAXBElement<GetProcessExecutionStatus> createGetProcessExecutionStatus(GetProcessExecutionStatus value) {
-        return new JAXBElement<GetProcessExecutionStatus>(_GetProcessExecutionStatus_QNAME, GetProcessExecutionStatus.class, null, value);
+    @XmlElementDecl(namespace = "http://dps.exlibris.com/", name = "getDepositActivityByUpdateDateByMaterialFlowResponse")
+    public JAXBElement<GetDepositActivityByUpdateDateByMaterialFlowResponse> createGetDepositActivityByUpdateDateByMaterialFlowResponse(GetDepositActivityByUpdateDateByMaterialFlowResponse value) {
+        return new JAXBElement<GetDepositActivityByUpdateDateByMaterialFlowResponse>(_GetDepositActivityByUpdateDateByMaterialFlowResponse_QNAME, GetDepositActivityByUpdateDateByMaterialFlowResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RunProcess }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SubmitDepositActivity }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://dps.exlibris.com/", name = "runProcess")
-    public JAXBElement<RunProcess> createRunProcess(RunProcess value) {
-        return new JAXBElement<RunProcess>(_RunProcess_QNAME, RunProcess.class, null, value);
+    @XmlElementDecl(namespace = "http://dps.exlibris.com/", name = "submitDepositActivity")
+    public JAXBElement<SubmitDepositActivity> createSubmitDepositActivity(SubmitDepositActivity value) {
+        return new JAXBElement<SubmitDepositActivity>(_SubmitDepositActivity_QNAME, SubmitDepositActivity.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetDepositActivityByUpdateDateByMaterialFlow }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://dps.exlibris.com/", name = "getDepositActivityByUpdateDateByMaterialFlow")
+    public JAXBElement<GetDepositActivityByUpdateDateByMaterialFlow> createGetDepositActivityByUpdateDateByMaterialFlow(GetDepositActivityByUpdateDateByMaterialFlow value) {
+        return new JAXBElement<GetDepositActivityByUpdateDateByMaterialFlow>(_GetDepositActivityByUpdateDateByMaterialFlow_QNAME, GetDepositActivityByUpdateDateByMaterialFlow.class, null, value);
     }
 
 }

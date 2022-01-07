@@ -10,7 +10,6 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.1
  *
  */
-@SuppressWarnings("serial")
 @WebFault(name = "SetNotValidException", targetNamespace = "http://dps.exlibris.com/")
 public class SetNotValidException_Exception
     extends java.lang.Exception
