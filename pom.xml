@@ -62,9 +62,9 @@
 		<dependency>
 			<groupId>com.exlibris</groupId>
 			<artifactId>sdk</artifactId>
-			<version>7.0.0</version>
+			<version>7.1.0</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/dps-sdk-7.0.0.jar</systemPath>
+			<systemPath>${project.basedir}/lib/dps-sdk-7.1.0.jar</systemPath>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
 		<!-- https://mvnrepository.com/artifact/org.apache.xmlbeans/xmlbeans -->

@@ -44,7 +44,11 @@ public class Jhove {
 	}
 
 	public static boolean wellFormedAndValid(String lines) throws Exception {
-		return (status(lines).equals("Well-Formed and valid") || status(lines).equals("Well-Formed"));
+		return status(lines).equals("Well-Formed and valid");
+	}
+	
+	public static boolean wellFormed(String lines) throws Exception {
+		return status(lines).startsWith("Well-Formed");
 	}
 
 	public static void printJhove(String module, File file) throws Exception {
@@ -71,12 +75,12 @@ public class Jhove {
 			printJhove("XML-hul", file);
 		} else if (file.getName().endsWith(".pdf")) {
 			printJhove("PDF-hul", file);
+		} else if (file.getName().endsWith(".png")) {
+			printJhove("PNG-gdm", file);
 		}
 	}
 
 	public static void main(String[] args) throws Exception {
-//		String file = System.getProperty("user.home")
-//				+ "/workspace/metsSIPs/dev/76661659/ri2009/content/streams/SOURCE_MD/SRU.xml";
 		String filesRootFolder = System.getProperty("user.home") + "/workspace/metsSIPs/";
 		printJhove(new File(filesRootFolder));
 		System.out.println("Jhove.main() Ende");
