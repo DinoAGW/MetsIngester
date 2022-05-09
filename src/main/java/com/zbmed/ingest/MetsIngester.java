@@ -87,12 +87,13 @@ public class MetsIngester {
 							String subDirectoryName = sip.getAbsolutePath().concat("/");
 							statusFile = new StatusFile(new File(subDirectoryName));
 							if (!statusFile.exists()) {
-								System.out.println("#".concat(Integer.toString(sipCount+1)).concat(" ingeste: '")
+								System.out.println("#".concat(Integer.toString(sipCount + 1)).concat(" ingeste: '")
 										.concat(subDirectoryName).concat("' in '").concat(rosettaURL).concat("'."));
 								ingest(subDirectoryName, rosettaURL, rosettaInstance, materialflowId, producerId);
 							} else {
-								System.out.println("#".concat(Integer.toString(sipCount+1)).concat(" SIP: '").concat(subDirectoryName)
-										.concat("' wurde bereits behandelt. Status: '").concat(statusFile.status).concat("'."));
+								System.out.println("#".concat(Integer.toString(sipCount + 1)).concat(" SIP: '")
+										.concat(subDirectoryName).concat("' wurde bereits behandelt. Status: '")
+										.concat(statusFile.status).concat("'."));
 							}
 							++sipCount;
 						}
@@ -106,7 +107,7 @@ public class MetsIngester {
 			String producerId) throws Exception {
 		final String DEPOSIT_WSDL_URL = rosettaURL.concat("/dpsws/deposit/DepositWebServices?wsdl");
 		final String PRODUCER_WSDL_URL = rosettaURL.concat("/dpsws/backoffice/ProducerWebServices?wsdl");
-		String SIP_STATUS_WSDL_URL = rosettaURL.concat("/dpsws/repository/SipWebServices?wsdl");
+		final String SIP_STATUS_WSDL_URL = rosettaURL.concat("/dpsws/repository/SipWebServices?wsdl");
 
 		// 3. Place the SIP directory in a folder that can be accessed by the Rosetta application (using FTP is a valid approach)
 		String sipId = subDirectoryName.substring(subDirectoryName.lastIndexOf("/", subDirectoryName.length() - 2) + 1,
@@ -114,7 +115,7 @@ public class MetsIngester {
 		final String SubAppPath = "/exchange/lza/lza-zbmed/".concat(rosettaInstance).concat("/SubApp/");
 		final String sipPathTib = SubAppPath.concat(sipId).concat("/");
 		upload2Transferserver(subDirectoryName, sipPathTib, rosettaInstance);
-//		System.out.println("SIP auf Transferserver übertragen");
+		//		System.out.println("SIP auf Transferserver übertragen");
 
 		//submit
 		// 4. Set Authentication Header on service
@@ -136,10 +137,10 @@ public class MetsIngester {
 		System.out.println("Submit Deposit...");
 		Boolean repeat = true;
 		String retval = null;
-		while(repeat) {
+		while (repeat) {
 			try {
 				retval = depWS.getDepositWebServicesPort().submitDepositActivity(null, materialflowId, sipId + "/",
-				producerId, depositSetId);
+						producerId, depositSetId);
 				repeat = false;
 			} catch (Exception e) {
 				System.err.println("Submit Deposit fehlgeschlagen");
@@ -147,46 +148,51 @@ public class MetsIngester {
 				Thread.sleep(1000);
 			}
 		}
+		if (retval == null) {
+			System.err.println("Submit Deposit ergab Nullantwort");
+			throw new Exception();
+		}
 		System.out.println("Submit Deposit Result: '" + retval + "' für materialflowId: '" + materialflowId
 				+ "', sipId: '" + sipId + "/', producerId: '" + producerId + "' und depositSetId: '" + depositSetId + "'.");
 
-		if (retval != null) {
-			DepositResultDocument depositResultDocument = DepositResultDocument.Factory.parse(retval);
-			DepositResult depositResult = depositResultDocument.getDepositResult();
+		DepositResultDocument depositResultDocument = DepositResultDocument.Factory.parse(retval);
+		DepositResult depositResult = depositResultDocument.getDepositResult();
 
-			// 6.check status of sip when deposit was successful
-			if (depositResult.getIsError()) {
-				System.err.println("Submit Deposit Failed");
-				statusFile.create("ERROR");
-				saveErrorInfos(depositResult);
-			} else {
-				int waited = 0;
-				SipStatusInfo lastStatus = null, status = null;
-				for (int i = 0; i < 10000; i++) {
-					Thread.sleep(1000);
-					++waited;
-					try {
-						status = new SipWebServices_Service(new URL(SIP_STATUS_WSDL_URL),
-								new QName("http://dps.exlibris.com/", "SipWebServices")).getSipWebServicesPort()
-										.getSIPStatusInfo(String.valueOf(depositResult.getSipId()), false);
-						String statusString = status.getStatus();
-						if (!compareStatus(status, lastStatus)) {
-							System.out.println("Nach " + waited + " Sekunden...");
-							System.out.println("Submitted Deposit Status: " + statusString);
-							System.out.println("Submitted Deposit Stage: " + status.getStage());
-							System.out.println("Submitted Deposit is in Module: " + status.getModule());
-						}
-						if (statusString.equals("IN_TA") || statusString.equals("IN_HUMAN_STAGE")
-								|| statusString.equals("FINISHED")) {
-							statusFile.create("DONE");
-							saveDoneInfos(status, waited, depositResult);
-							break;
-						}
-						lastStatus = status;
-					} catch (Exception e) {
-						System.err.println("Statusabfrage fehlgeschlagen");
-						status = lastStatus;
+		// 6.check status of sip when deposit was successful
+		if (depositResult.getIsError()) {
+			System.err.println("Submit Deposit Failed");
+			statusFile.create("ERROR");
+			saveErrorInfos(depositResult);
+		} else {
+			int waited = 0;
+			SipStatusInfo lastStatus = null, status = null;
+			while(true) {
+				Thread.sleep(1000);
+				++waited;
+				try {
+					status = new SipWebServices_Service(new URL(SIP_STATUS_WSDL_URL),
+							new QName("http://dps.exlibris.com/", "SipWebServices")).getSipWebServicesPort()
+									.getSIPStatusInfo(String.valueOf(depositResult.getSipId()), false);
+					String statusString = status.getStatus();
+					if (!compareStatus(status, lastStatus)) {
+						System.out.println("Nach " + waited + " Sekunden: " + "Submitted Deposit Status: " + statusString
+								+ "; Submitted Deposit Stage: " + status.getStage() + "; Submitted Deposit is in Module: "
+								+ status.getModule());
 					}
+					if (statusString.equals("IN_TA") || statusString.equals("IN_HUMAN_STAGE")
+							|| statusString.equals("FINISHED")) {
+						statusFile.create("DONE");
+						saveDoneInfos(status, waited, depositResult);
+						break;
+					}
+					lastStatus = status;
+				} catch (Exception e) {
+					System.err.println("Statusabfrage fehlgeschlagen");
+					status = lastStatus;
+				}
+				if (waited >= 10800) { //3 Stunden reine Wartezeit
+					System.err.println("Zu oft nachgefragt, breche alles ab.");
+					throw new Exception();
 				}
 			}
 		}
@@ -257,34 +263,84 @@ public class MetsIngester {
 		statusFile.saveStringToProperty("DepositResult", depositResult.toString());
 	}
 
-	private static void upload2Transferserver(String from, String to, String rosettaInstance) throws IOException {
-		SSHClient ssh = new SSHClient();
-		ssh.loadKnownHosts();
-		ssh.connect("transfer.lza.tib.eu");
-		try {
-			KeyProvider keys = ssh.loadKeys(sshKeyPath);
-			ssh.authPublickey("lza-zbmed", keys);
-			final SFTPClient sftp = ssh.newSFTPClient();
-			SFTPManager.put(sftp, from, to);
-			sftp.chmod(to, 509);//Decimal conversion of octal 0755
-		} finally {
-			ssh.disconnect();
+	private static void upload2Transferserver(String from, String to, String rosettaInstance) throws Exception {
+		boolean done = false;
+		while (!done) {
+			try {
+				SSHClient ssh = new SSHClient();
+				ssh.loadKnownHosts();
+				ssh.connect("transfer.lza.tib.eu");
+				try {
+					KeyProvider keys = ssh.loadKeys(sshKeyPath);
+					ssh.authPublickey("lza-zbmed", keys);
+					final SFTPClient sftp = ssh.newSFTPClient();
+					SFTPManager.put(sftp, from, to);
+					sftp.chmod(to, 509);//Decimal conversion of octal 0755
+					done = true;
+				} finally {
+					ssh.disconnect();
+				}
+				ssh.close();
+			} catch (Exception e) {
+				System.err.println("Fehler beim Hochladen.");
+				Thread.sleep(1000);
+				if (folderExists(to))
+					deleteFromTransferserver(to);
+			}
 		}
-		ssh.close();
 	}
 
-	private static void deleteFromTransferserver(String folder) throws IOException {
-		SSHClient ssh = new SSHClient();
-		ssh.loadKnownHosts();
-		ssh.connect("transfer.lza.tib.eu");//könnte fehlschlagen
-		try {
-			KeyProvider keys = ssh.loadKeys(sshKeyPath);
-			ssh.authPublickey("lza-zbmed", keys);
-			final SFTPClient sftp = ssh.newSFTPClient();
-			SFTPManager.rmDir(sftp, folder);
-		} finally {
-			ssh.disconnect();
+	private static void deleteFromTransferserver(String folder) throws Exception {//noch unzuverlässig
+		boolean done = false;
+		while (!done) {
+			try {
+				SSHClient ssh = new SSHClient();
+				ssh.loadKnownHosts();
+				ssh.connect("transfer.lza.tib.eu");//könnte fehlschlagen
+				try {
+					KeyProvider keys = ssh.loadKeys(sshKeyPath);
+					ssh.authPublickey("lza-zbmed", keys);
+					final SFTPClient sftp = ssh.newSFTPClient();
+					SFTPManager.rmDir(sftp, folder);
+				} finally {
+					ssh.disconnect();
+				}
+				ssh.close();
+				done = true;
+			} catch (Exception e) {
+				System.err.println("Fehler beim löschen.");
+				Thread.sleep(1000);
+				done = !folderExists(folder);
+			}
 		}
-		ssh.close();
+	}
+
+	private static boolean folderExists(String folder) {
+		boolean ret = false, done = false;
+		int cut = folder.lastIndexOf("/", folder.length() - 2);
+		String subfolder = folder.substring(0, cut);
+		String folderName = folder.substring(cut);
+		while (!done) {
+			try {
+				SSHClient ssh = new SSHClient();
+				ssh.loadKnownHosts();
+				ssh.connect("transfer.lza.tib.eu");
+				try {
+					KeyProvider keys = ssh.loadKeys(sshKeyPath);
+					ssh.authPublickey("lza-zbmed", keys);
+					final SFTPClient sftp = ssh.newSFTPClient();
+					System.out.println("'" + subfolder + "' '" + folderName + "'");
+					ret = SFTPManager.exists(sftp, subfolder, folderName);
+					done = true;
+				} finally {
+					System.err.println("Fehler bei Abfrage ob Ordner existiert.");
+					ssh.disconnect();
+				}
+				ssh.close();
+			} catch (Exception e) {
+				System.err.println("Fehler 2 bei Abfrage ob Ordner existiert.");
+			}
+		}
+		return ret;
 	}
 }
