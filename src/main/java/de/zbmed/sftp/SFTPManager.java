@@ -1,11 +1,10 @@
-package com.zbmed.sftp;
+package de.zbmed.sftp;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
-import com.zbmed.utilities.Utilities;
-
+import de.zbmed.utilities.Utilities;
 import net.schmizz.sshj.SSHClient;
 import net.schmizz.sshj.sftp.RemoteResourceInfo;
 import net.schmizz.sshj.sftp.SFTPClient;

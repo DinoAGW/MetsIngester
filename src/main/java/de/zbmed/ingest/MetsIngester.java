@@ -1,4 +1,4 @@
-package com.zbmed.ingest;
+package de.zbmed.ingest;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,8 +15,8 @@ import com.exlibris.dps.sdk.pds.HeaderHandlerResolver;
 import net.schmizz.sshj.SSHClient;
 import net.schmizz.sshj.sftp.SFTPClient;
 import net.schmizz.sshj.userauth.keyprovider.KeyProvider;
-import com.zbmed.sftp.SFTPManager;
-import com.zbmed.utilities.StatusFile;
+import de.zbmed.sftp.SFTPManager;
+import de.zbmed.utilities.StatusFile;
 
 public class MetsIngester {
 
@@ -38,12 +38,6 @@ public class MetsIngester {
 	//	private static final String METS_XSD = "mets.xsd";
 
 	private static StatusFile statusFile;
-
-	public static void main(String[] args) throws Exception {
-		System.out.println("Starte ingester...");
-		ingester();
-		System.out.println("Ingester ende");
-	}
 
 	public static void ingester() throws Exception {
 		File sipPathFile = new File(sipPath);
@@ -342,5 +336,13 @@ public class MetsIngester {
 			}
 		}
 		return ret;
+	}
+
+	public static void main(String[] args) throws Exception {
+		System.out.println("Starte ingester...");
+		ingester();
+		System.out.println("Zusammenfassung:");
+		SipChecker.showNotDones();
+		System.out.println("Ingester ende");
 	}
 }

@@ -1,4 +1,4 @@
-package com.zbmed.utilities;
+package de.zbmed.utilities;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;

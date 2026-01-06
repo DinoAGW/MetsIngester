@@ -1,4 +1,4 @@
-package com.zbmed.ingest;
+package de.zbmed.ingest;
 
 import java.io.BufferedWriter;
 import java.io.File;
