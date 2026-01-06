@@ -1,4 +1,4 @@
-package com.zbmed.ingest;
+package de.zbmed.ingest;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;

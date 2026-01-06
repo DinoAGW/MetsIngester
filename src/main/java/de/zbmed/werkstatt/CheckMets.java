@@ -1,4 +1,4 @@
-package com.zbmed.werkstatt;
+package de.zbmed.werkstatt;
 
 import java.io.IOException;
 import java.net.URL;
@@ -8,7 +8,8 @@ import javax.xml.namespace.QName;
 import com.exlibris.dps.DepositWebServices_Service;
 import com.exlibris.dps.sdk.pds.HeaderHandlerResolver;
 import com.exlibris.dps.sdk.pds.PdsClient;
-import com.zbmed.ingest.PropertiesManager;
+
+import de.zbmed.ingest.PropertiesManager;
 
 public class CheckMets {
 	static final String fs = System.getProperty("file.separator");

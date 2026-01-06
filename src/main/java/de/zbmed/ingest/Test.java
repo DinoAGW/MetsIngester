@@ -1,4 +1,4 @@
-package com.zbmed.ingest;
+package de.zbmed.ingest;
 
 //import gov.loc.mets.DivType;
 import gov.loc.mets.FileType;
